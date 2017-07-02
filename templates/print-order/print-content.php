@@ -79,8 +79,8 @@ if ( !defined( 'ABSPATH' ) ) exit;
 								<?php foreach( $order->get_items() as $item ) : ?>
 									
 									<?php
-										$product = apply_filters( 'wcdn_order_item_product', $order->get_product_from_item( $item ), $item );
-										$item_meta = new WC_Order_Item_Meta( $item['item_meta'], $product );
+										$product = apply_filters( 'wcdn_order_item_product', $item->get_product(), $item );
+										$item_meta = new WC_Order_Item_Product( $item->get_id() );
 									?>
 									
 									<tr>
@@ -89,7 +89,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 
 											<span class="name"><?php echo apply_filters( 'wcdn_order_item_name', $item['name'], $item ); ?></span>
 
-											<?php $item_meta->display(); ?>
+											<?php echo $item_meta->get_formatted_meta_data(); ?>
 											
 											<dl class="extras">
 												<?php if( $product && $product->exists() && $product->is_downloadable() && $order->is_download_permitted() ) : ?>

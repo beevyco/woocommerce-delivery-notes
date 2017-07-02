@@ -80,10 +80,10 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Theme' ) ) {
 				// Thank you page
 				if( is_order_received_page() && !is_user_logged_in() ) {
 					// Don't output the butten when there is no email
-					if( !$order->billing_email ) {
+					if( !$order->get_billing_email() ) {
 						return;
 					}
-					$print_url = wcdn_get_print_link( $order_id, $this->get_template_type( $order ), $order->billing_email );
+					$print_url = wcdn_get_print_link( $order_id, $this->get_template_type( $order ), $order->get_billing_email() );
 				}
 				
 				?>
@@ -99,8 +99,8 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Theme' ) ) {
 		 */		
 		public function add_email_print_url( $order, $sent_to_admin = true, $plain_text = false ) {
 			if( get_option( 'wcdn_email_print_link' ) == 'yes' ) {				
-				if( $order->billing_email && !$sent_to_admin ) {
-					$url = wcdn_get_print_link( $order->id, $this->get_template_type( $order ), $order->billing_email, true );
+				if( $order->get_billing_email() && !$sent_to_admin ) {
+					$url = wcdn_get_print_link( $order->id, $this->get_template_type( $order ), $order->get_billing_email(), true );
 					
 					if( $plain_text ) :
 echo __( 'Print your order', 'woocommerce-delivery-notes' ) . "\n\n";
