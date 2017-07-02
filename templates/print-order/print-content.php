@@ -89,7 +89,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 
 											<span class="name"><?php echo apply_filters( 'wcdn_order_item_name', $item['name'], $item ); ?></span>
 
-											<?php echo $item_meta->get_formatted_meta_data(); ?>
+											<?php echo wc_display_item_meta( $item ); ?>
 											
 											<dl class="extras">
 												<?php if( $product && $product->exists() && $product->is_downloadable() && $order->is_download_permitted() ) : ?>
