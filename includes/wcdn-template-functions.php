@@ -251,7 +251,7 @@ function wcdn_get_order_info( $order ) {
 	
 	$fields['order_date'] = array( 
 		'label' => __( 'Order Date', 'woocommerce-delivery-notes' ),
-		'value' => date_i18n( get_option( 'date_format' ), strtotime( $order->get_date_completed() ) )
+		'value' => date_i18n( get_option( 'date_format' ), strtotime( $order->get_date_created() ) )
 	);
 	
 	$fields['payment_method'] = array( 
